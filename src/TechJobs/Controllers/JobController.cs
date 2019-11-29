@@ -44,11 +44,15 @@ namespace TechJobs.Controllers
             {
                 //make job from new job
                 Job newJob = new Job {
+
+                    
+
+                    //so fundamentally enums are just ints right? and we have ints so..
                     Name = newJobViewModel.Name,
-                    CoreCompetency = newJobViewModel.CoreCompetency,
-                    Employer = newJobViewModel.Employer,
-                    Location = newJobViewModel.Location,
-                    PositionType = newJobViewModel.PositionType
+                    CoreCompetency = jobData.CoreCompetencies.Find(newJobViewModel.CoreCompetencyID),
+                    Employer = jobData.Employers.Find(newJobViewModel.EmployerID),//WINNER!!!!!!!!!!!!!!!!!
+                    Location = jobData.Locations.Find(newJobViewModel.LocationID),
+                    PositionType = jobData.PositionTypes.Find(newJobViewModel.PositionTypeID)
                 };
                 jobData.Jobs.Add(newJob);
 

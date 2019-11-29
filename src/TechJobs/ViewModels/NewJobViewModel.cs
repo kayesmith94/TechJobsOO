@@ -14,17 +14,16 @@ namespace TechJobs.ViewModels
         [Required]
         [Display(Name = "Employer")]
         public int EmployerID { get; set; }
-
-        public Employer Employer { get; set; }
       
-        public Location Location { get; set; }
+        public int LocationID { get; set; }
         
-        public CoreCompetency CoreCompetency { get; set; }
+        [Display(Name="Skill")]
+        public int CoreCompetencyID { get; set; }
        
-        public PositionType PositionType { get; set; }
+        public int PositionTypeID { get; set; }
 
 
-        // TODO #3 DONE??? - Included other fields needed to create a job, with correct validation attributes and display names.
+        // TODO #3 DONE - Included other fields needed to create a job, with correct validation attributes and display names.
 
         public List<SelectListItem> Employers { get; set; } = new List<SelectListItem>();
         public List<SelectListItem> Locations { get; set; } = new List<SelectListItem>();
@@ -36,6 +35,8 @@ namespace TechJobs.ViewModels
 
             JobData jobData = JobData.GetInstance();
 
+            
+            //need to find employers[id] 
             foreach (Employer field in jobData.Employers.ToList())
             {
                 Employers.Add(new SelectListItem {
@@ -43,7 +44,7 @@ namespace TechJobs.ViewModels
                     Text = field.Value
                 });
             }
-            // TODO #4 DONE??? - populate the other List<SelectListItem> collections needed in the view
+            // TODO #4 DONE - populate the other List<SelectListItem> collections needed in the view
             ///kaye start
             foreach (Location field in jobData.Locations.ToList())
             {
@@ -54,8 +55,7 @@ namespace TechJobs.ViewModels
                 });
             }
 
-            foreach (CoreCompetency field in jobData.CoreCompetencies.ToList())//is it a problem that they're all "field"? maybe not b/c of scope
-
+            foreach (CoreCompetency field in jobData.CoreCompetencies.ToList())
             {
                 CoreCompetencies.Add(new SelectListItem
                 {
